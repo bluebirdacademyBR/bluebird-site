@@ -279,6 +279,7 @@ footer{background:#00081e;padding:60px 0 30px;border-top:1px solid rgba(255,255,
 /* ─── RESPONSIVE 600px ─── */
 @media(max-width:600px){
   .about,.how,.quiz,.plans,.testi,.final{padding:64px 0}
+  [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important}
   .container{padding:0 16px}
   .nav-inner{padding:0 16px}
   .hero-content{padding:88px 16px 56px}
@@ -491,11 +492,35 @@ footer{background:#00081e;padding:60px 0 30px;border-top:1px solid rgba(255,255,
 
     <div class="quiz-box">
 
-      <!-- ── TELA 1: FORMULÁRIO ── -->
-      <div id="qform-wrap">
+      <!-- ── TELA 1: INÍCIO ── -->
+      <div id="qstart-wrap">
         <div class="quiz-head">
-          <h2 class="bebas">Iniciar meu teste de inglês</h2>
-          <p>Preencha seus dados e descubra seu nível agora. Resultado enviado direto no seu WhatsApp!</p>
+          <h2 class="bebas">Descubra seu nível de inglês</h2>
+          <p>15 questões baseadas no padrão Cambridge. Gratuito e sem compromisso.</p>
+        </div>
+        <div style="text-align:center;margin-top:8px">
+          <button class="btn-start" onclick="startQ()" style="max-width:360px;margin:0 auto">Iniciar o teste agora 🚀</button>
+          <p class="wa-note" style="margin-top:14px">📲 Resultado enviado direto no seu <em>WhatsApp</em> ao final • 100% gratuito</p>
+        </div>
+      </div>
+
+      <!-- ── TELA 2: QUIZ ── -->
+      <div id="qwiz" class="hidden">
+        <div class="q-dots" id="q-dots"></div>
+        <div class="qprow">
+          <span class="qplab" id="qlab">Questão 1 de 15</span>
+          <span class="q-weight" id="qweight">Peso: 1 ponto</span>
+        </div>
+        <div class="qtext" id="qtext"></div>
+        <div class="qopts" id="qopts"></div>
+      </div>
+
+      <!-- ── TELA 3: FORMULÁRIO FINAL ── -->
+      <div id="qform-wrap" class="hidden">
+        <div class="quiz-head">
+          <div style="font-size:52px;margin-bottom:10px">🎯</div>
+          <h2 class="bebas">Seu resultado está pronto!</h2>
+          <p>Só falta confirmar onde enviar. Preencha abaixo para liberar seu plano personalizado.</p>
         </div>
         <div class="qform">
           <div class="fg">
@@ -513,26 +538,16 @@ footer{background:#00081e;padding:60px 0 30px;border-top:1px solid rgba(255,255,
           <div class="fg">
             <label>Idade</label>
             <input type="number" id="fa" placeholder="25" min="10" max="99">
+            <span style="font-size:11px;color:rgba(255,255,255,.35);margin-top:4px;display:block">Confirmação de idade necessária para liberarmos seu plano personalizado.</span>
           </div>
           <div class="fg full">
-            <button class="btn-start" onclick="startQ()">Começar meu teste gratuito 🚀</button>
+            <button class="btn-start" onclick="submitForm()">Liberar meu resultado 🎉</button>
           </div>
         </div>
         <p class="wa-note">📲 Resultado enviado direto no seu <em>WhatsApp</em> ao final do teste • 100% gratuito</p>
       </div>
 
-      <!-- ── TELA 2: QUIZ ── -->
-      <div id="qwiz" class="hidden">
-        <div class="q-dots" id="q-dots"></div>
-        <div class="qprow">
-          <span class="qplab" id="qlab">Questão 1 de 15</span>
-          <span class="q-weight" id="qweight">Peso: 1 ponto</span>
-        </div>
-        <div class="qtext" id="qtext"></div>
-        <div class="qopts" id="qopts"></div>
-      </div>
-
-      <!-- ── TELA 3: RESULTADO ── -->
+      <!-- ── TELA 4: RESULTADO ── -->
       <div id="qres" class="hidden">
         <div class="res-inner">
           <div style="font-size:72px;margin-bottom:16px">🎉</div>
@@ -560,6 +575,34 @@ footer{background:#00081e;padding:60px 0 30px;border-top:1px solid rgba(255,255,
     <div class="section-label rev">Por onde devo começar?</div>
     <h2 class="bebas rev" style="font-size:clamp(2.2rem,4.5vw,3.8rem);color:var(--yellow);line-height:1;margin-bottom:4px">ESCOLHA SEU CAMINHO</h2>
     <p class="rev" style="color:rgba(255,255,255,.45);font-size:15px;margin-top:6px">Três opções para acelerar sua jornada rumo à fluência.</p>
+    <!-- ── ECOSSISTEMA ── -->
+    <div class="rev" style="margin:40px 0 48px;background:rgba(1,97,241,.08);border:1px solid rgba(1,97,241,.2);border-radius:24px;padding:36px 40px">
+      <div class="bebas" style="font-size:clamp(1.6rem,3vw,2.2rem);color:var(--yellow);margin-bottom:6px">COMO FUNCIONA O ECOSSISTEMA BLUE BIRD</div>
+      <p style="color:rgba(255,255,255,.65);font-size:15px;line-height:1.7;margin-bottom:28px">Não é apenas um curso — é uma <strong style="color:#fff">imersão completa no idioma</strong> que integra três pilares em 6 meses de jornada:</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:28px">
+        <div style="background:rgba(255,255,255,.05);border-radius:16px;padding:22px 18px;text-align:center;border:1px solid rgba(255,255,255,.08)">
+          <div style="font-size:36px;margin-bottom:10px">📱</div>
+          <div style="font-weight:800;color:#fff;margin-bottom:8px;font-size:15px">Aplicativo & Exercícios</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.6">Plataforma 24/7 com trilha estruturada A1→C2. O momento de <strong style="color:rgba(255,255,255,.75)">retenção e aprendizado</strong> — estude no seu ritmo, onde e quando quiser.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border-radius:16px;padding:22px 18px;text-align:center;border:1px solid rgba(255,255,255,.08)">
+          <div style="font-size:36px;margin-bottom:10px">🎬</div>
+          <div style="font-weight:800;color:#fff;margin-bottom:8px;font-size:15px">Videoaulas Exclusivas</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.6">Conteúdo gravado pelo professor para aprofundar cada tema. O momento de <strong style="color:rgba(255,255,255,.75)">compreensão e estudo</strong> — assista quantas vezes precisar.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border-radius:16px;padding:22px 18px;text-align:center;border:1px solid rgba(255,255,255,.08)">
+          <div style="font-size:36px;margin-bottom:10px">🎙️</div>
+          <div style="font-weight:800;color:#fff;margin-bottom:8px;font-size:15px">Aulas ao Vivo</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.6">Conversação com pessoas reais em grupos reduzidos. O momento de <strong style="color:rgba(255,255,255,.75)">prática ativa e fluência</strong> — onde o idioma finalmente sai da teoria.</div>
+        </div>
+      </div>
+      <div style="background:rgba(254,211,30,.1);border:1px solid rgba(254,211,30,.25);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <span style="font-size:24px">📅</span>
+        <div style="font-size:14px;color:rgba(255,255,255,.8);line-height:1.6">
+          Tudo isso ao longo de <strong style="color:var(--yellow)">6 meses de imersão</strong>, com investimento dividido em <strong style="color:var(--yellow)">6 parcelas mensais</strong> — um ecossistema completo que ativa aprendizado, prática e retenção ao mesmo tempo.
+        </div>
+      </div>
+    </div>
     <div class="plans-grid">
 
       <div class="plan basic rev">
@@ -620,6 +663,23 @@ footer{background:#00081e;padding:60px 0 30px;border-top:1px solid rgba(255,255,
       </div>
 
     </div>
+    <!-- ── GARANTIA 7 DIAS ── -->
+    <div class="rev" style="margin-top:48px;display:flex;justify-content:center">
+      <div style="background:rgba(165,232,23,.07);border:2px solid rgba(165,232,23,.25);border-radius:20px;padding:28px 36px;max-width:560px;display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+        <div style="font-size:56px;flex-shrink:0">🛡️</div>
+        <div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--green);letter-spacing:1px;margin-bottom:6px">GARANTIA DE 7 DIAS</div>
+          <div style="font-size:14px;color:rgba(255,255,255,.75);line-height:1.6">
+            Compra 100% segura. Se nos primeiros 7 dias você não ficar satisfeito com a experiência, devolvemos seu dinheiro <strong style="color:#fff">integralmente</strong>, sem burocracia e sem perguntas.
+          </div>
+          <div style="margin-top:10px;display:flex;align-items:center;gap:8px">
+            <span style="font-size:16px">🔒</span>
+            <span style="font-size:12px;color:rgba(255,255,255,.45);font-weight:600;letter-spacing:.5px">COMPRA SEGURA • REEMBOLSO GARANTIDO • SEM RISCO</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -863,16 +923,27 @@ function show(id)  { document.getElementById(id).classList.remove('hidden'); }
 function hide(id)  { document.getElementById(id).classList.add('hidden'); }
 
 function startQ() {
-  uName  = document.getElementById('fn').value.trim();
-  uPhone = document.getElementById('fp').value.trim();
-  uEmail = document.getElementById('fe').value.trim();
-  uAge   = document.getElementById('fa').value.trim();
-  if (!uName || !uPhone) { alert('Por favor, preencha seu nome e WhatsApp!'); return; }
-  hide('qform-wrap');
+  hide('qstart-wrap');
   show('qwiz');
   cur = 0; score = 0;
   buildDots();
   render();
+}
+
+function submitForm() {
+  uName  = document.getElementById('fn').value.trim();
+  uPhone = document.getElementById('fp').value.trim();
+  uEmail = document.getElementById('fe').value.trim();
+  uAge   = document.getElementById('fa').value.trim();
+  if (!uName || !uPhone) { alert('Por favor, preencha seu nome e WhatsApp para receber o resultado!'); return; }
+  hide('qform-wrap');
+  show('qres');
+  uLv = Lvs.find(l => score >= l.r[0] && score <= l.r[1]) || Lvs[1];
+  document.getElementById('r-username').textContent = uName.split(' ')[0];
+  const planName = 'My Journey';
+  const planDesc = 'O <strong>My Journey</strong> é o plano ideal para você — aulas ao vivo, comunidade VIP e acompanhamento direto do professor.';
+  document.getElementById('rplan').innerHTML = \`🎯 \${planDesc}\`;
+  sendToFormspree(planName);
 }
 
 function buildDots() {
@@ -897,7 +968,7 @@ function updateDots() {
 }
 
 function render() {
-  if (cur >= Qs.length) { finishQuiz(); return; }
+  if (cur >= Qs.length) { hide('qwiz'); show('qform-wrap'); return; }
   const q = Qs[cur];
   updateDots();
   document.getElementById('qlab').textContent    = `Questão ${cur + 1} de ${Qs.length}`;
@@ -919,7 +990,7 @@ function render() {
   });
 }
 
-function finishQuiz() {
+function finishQuiz_OLD() {
   hide('qwiz');
   show('qres');
   uLv = Lvs.find(l => score >= l.r[0] && score <= l.r[1]) || Lvs[1];
@@ -962,7 +1033,7 @@ function sendToFormspree(planName) {
 
 function resetQ() {
   hide('qres');
-  show('qform-wrap');
+  show('qstart-wrap');
   cur = 0; score = 0; uLv = null;
 }
 
